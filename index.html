@@ -1,0 +1,1214 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LAS FAKE NEWS | Los Pato News</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --verde: #1b5e20;
+  --verde2: #2e7d32;
+  --verde3: #43a047;
+  --fondo: #e8f5e9;
+  --texto: #23472a;
+  --blanco: #ffffff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9, #a5d6a7);
+  color: var(--texto);
+  line-height: 1.6;
+  padding: 20px;
+}
+
+button, textarea, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.news-page {
+  width: 100%;
+  max-width: 1050px;
+  margin: auto;
+  background: white;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px #0002;
+}
+
+/* ENCABEZADO */
+
+.header {
+  background: linear-gradient(90deg, #1b5e20, #2e7d32, #43a047);
+  padding: 22px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  color: white;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.hexagon {
+  width: 55px;
+  height: 55px;
+  background: white;
+  color: var(--verde);
+  clip-path: polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+}
+
+.site-title {
+  background: white;
+  color: var(--verde);
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-size: 21px;
+  font-weight: 900;
+}
+
+.date-chip {
+  background: #ffffff30;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+/* NAVEGACIÓN */
+
+nav {
+  background: #164a1b;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 13px;
+  border-radius: 20px;
+}
+
+nav a:hover {
+  background: #ffffff25;
+}
+
+/* PORTADA */
+
+.hero {
+  padding: 35px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.hero-visual {
+  flex-shrink: 0;
+  width: 125px;
+  height: 125px;
+  background: linear-gradient(160deg, #2e7d32, #81c784);
+  clip-path: polygon(50% 0%,100% 100%,0% 100%);
+  display: grid;
+  place-items: center;
+}
+
+.hero-visual span {
+  font-size: 54px;
+  margin-top: 25px;
+}
+
+.hero-question {
+  color: var(--verde);
+  font-size: clamp(25px, 4vw, 36px);
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.hero-question span {
+  display: block;
+  color: #558b2f;
+  font-size: 17px;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+/* SECCIONES */
+
+.section {
+  padding: 25px 32px;
+  scroll-margin-top: 15px;
+}
+
+.section-title {
+  color: var(--verde);
+  font-size: 27px;
+  margin-bottom: 8px;
+}
+
+.section-intro {
+  margin-bottom: 22px;
+  color: #55705a;
+}
+
+/* TARJETAS DE INFORMACIÓN */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.card {
+  border-radius: 15px;
+  overflow: hidden;
+  background: #e8f5e9;
+  box-shadow: 0 4px 14px #00000012;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 9px 22px #0002;
+}
+
+.card img {
+  display: block;
+  width: 100%;
+  height: 155px;
+  object-fit: cover;
+  background: #c8e6c9;
+}
+
+.card-content {
+  padding: 17px;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #2e7d32;
+  margin-bottom: 7px;
+}
+
+.card h3 {
+  color: var(--verde);
+  font-size: 17px;
+  line-height: 1.35;
+  margin-bottom: 9px;
+}
+
+.card p {
+  font-size: 14px;
+  color: #4c6650;
+}
+
+.info-box {
+  background: #e8f5e9;
+  padding: 20px;
+  border-radius: 14px;
+  margin-top: 20px;
+  border-left: 5px solid #43a047;
+}
+
+/* BOTONES */
+
+.btn {
+  display: inline-block;
+  background: var(--verde2);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-weight: bold;
+  transition: background .2s, transform .2s;
+}
+
+.btn:hover {
+  background: #164a1b;
+  transform: translateY(-2px);
+}
+
+.btn-light {
+  background: white;
+  color: var(--verde);
+  border: 2px solid #a5d6a7;
+}
+
+.btn-light:hover {
+  background: #e8f5e9;
+}
+
+/* DETECTOR */
+
+.detector {
+  margin: 10px 32px 32px;
+  padding: 28px;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #e8f5e9, #f6fff6);
+  border: 2px solid #a5d6a7;
+  scroll-margin-top: 15px;
+}
+
+.detector h2 {
+  color: var(--verde);
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.detector-desc {
+  margin-bottom: 18px;
+  color: #55705a;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 6px;
+}
+
+textarea, input[type="text"] {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border: 2px solid #a5d6a7;
+  border-radius: 11px;
+  background: white;
+  color: #23472a;
+  outline: none;
+}
+
+textarea {
+  min-height: 155px;
+  resize: vertical;
+}
+
+textarea:focus, input:focus {
+  border-color: #2e7d32;
+  box-shadow: 0 0 0 3px #43a04720;
+}
+
+.form-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 15px;
+}
+
+.resultado {
+  display: none;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 13px;
+  overflow-wrap: anywhere;
+}
+
+.resultado h3 {
+  margin-bottom: 10px;
+}
+
+.resultado ul {
+  padding-left: 22px;
+  margin: 10px 0;
+}
+
+.resultado li {
+  margin: 7px 0;
+}
+
+.resultado p {
+  margin-top: 9px;
+}
+
+.resultado-alerta {
+  display: block;
+  background: #fff3cd;
+  border: 2px solid #e8bd56;
+  color: #674900;
+}
+
+.resultado-info {
+  display: block;
+  background: #e3f2fd;
+  border: 2px solid #90caf9;
+  color: #17456b;
+}
+
+.resultado-ok {
+  display: block;
+  background: #e8f5e9;
+  border: 2px solid #81c784;
+  color: #205629;
+}
+
+.nota {
+  font-size: 13px;
+  color: #617564;
+  margin-top: 15px;
+}
+
+/* JUEGO */
+
+.game-banner {
+  margin: 0 32px 30px;
+  background: linear-gradient(110deg, #1b5e20, #43a047);
+  border-radius: 16px;
+  padding: 25px;
+  color: white;
+  scroll-margin-top: 15px;
+}
+
+.game-banner h2 {
+  color: white;
+  font-size: 27px;
+}
+
+.game-banner > p {
+  margin-bottom: 18px;
+}
+
+.game-question {
+  background: white;
+  color: #24472a;
+  padding: 22px;
+  border-radius: 13px;
+}
+
+.game-progress {
+  color: #558b2f;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.game-question h3 {
+  color: var(--verde);
+  margin-bottom: 10px;
+}
+
+.game-options {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.game-option {
+  width: 100%;
+  padding: 13px;
+  text-align: left;
+  border-radius: 10px;
+  border: 2px solid #c8e6c9;
+  background: #f5fbf5;
+  color: #24472a;
+  font-weight: 600;
+}
+
+.game-option:hover:not(:disabled) {
+  border-color: #43a047;
+  background: #e8f5e9;
+}
+
+.game-option:disabled {
+  cursor: default;
+  opacity: .85;
+}
+
+.game-feedback {
+  margin-top: 15px;
+  padding: 13px;
+  border-radius: 10px;
+  display: none;
+}
+
+.game-feedback.visible {
+  display: block;
+}
+
+.game-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* CONSEJOS Y PIE */
+
+.tips-list {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.tips-list li {
+  background: #f0f8f0;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.footer {
+  background: #1b5e20;
+  color: #dcedc8;
+  padding: 24px;
+  text-align: center;
+}
+
+.footer strong {
+  color: white;
+  font-size: 20px;
+}
+
+.footer p {
+  margin-top: 5px;
+  font-size: 13px;
+}
+
+@media (max-width: 720px) {
+  body {
+    padding: 8px;
+  }
+
+  .header {
+    padding: 18px;
+  }
+
+  .site-title {
+    font-size: 16px;
+    padding: 9px 12px;
+  }
+
+  .hero {
+    padding: 25px 20px;
+    gap: 15px;
+  }
+
+  .hero-visual {
+    width: 85px;
+    height: 85px;
+  }
+
+  .hero-visual span {
+    font-size: 36px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .section {
+    padding: 22px 18px;
+  }
+
+  .detector {
+    margin: 5px 18px 25px;
+    padding: 20px;
+  }
+
+  .game-banner {
+    margin: 0 18px 25px;
+    padding: 18px;
+  }
+}
+
+@media (max-width: 460px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    align-items: flex-start;
+  }
+
+  .hero-visual {
+    width: 65px;
+    height: 65px;
+  }
+
+  .hero-visual span {
+    font-size: 28px;
+  }
+
+  .hero-question span {
+    font-size: 14px;
+  }
+
+  .date-chip {
+    font-size: 12px;
+  }
+
+  .section-title, .detector h2 {
+    font-size: 23px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<main class="news-page">
+
+  <!-- ENCABEZADO -->
+  <header class="header">
+    <div class="logo">
+      <div class="hexagon">MRG</div>
+      <div class="site-title">LAS FAKE NEWS</div>
+    </div>
+    <div class="date-chip">📰 Edición especial · 2026</div>
+  </header>
+
+  <nav aria-label="Navegación principal">
+    <a href="#problematica">La problemática</a>
+    <a href="#noticias">Información</a>
+    <a href="#detector">Detector</a>
+    <a href="#juego">Jugar</a>
+    <a href="#consejos">Consejos</a>
+  </nav>
+
+  <!-- PORTADA -->
+  <section class="hero">
+    <div class="hero-visual">
+      <span>🔎</span>
+    </div>
+    <div class="hero-question">
+      ¿CÓMO DETECTAR LAS FAKE NEWS?
+      <span>Investigá, compará y pensá antes de compartir.</span>
+    </div>
+  </section>
+
+  <!-- PROBLEMÁTICA -->
+  <section class="section" id="problematica">
+    <h2 class="section-title">📰 ¿Cuál es la problemática?</h2>
+    <p class="section-intro">
+      Las noticias falsas son un problema porque pueden confundir,
+      engañar y hacer que las personas tomen decisiones basadas en
+      información incorrecta.
+    </p>
+
+    <div class="info-box">
+      <h3>¿Por qué se difunden tan rápido?</h3>
+      <p>
+        Internet y las redes sociales permiten compartir mensajes
+        en segundos. A veces, las personas reenvían una noticia sin
+        comprobar quién la publicó ni si existen pruebas que la respalden.
+        Así, un rumor puede llegar a muchísimas personas.
+      </p>
+    </div>
+  </section>
+
+  <!-- SEIS TARJETAS -->
+  <section class="section" id="noticias">
+    <h2 class="section-title">📚 Conocé las fake news</h2>
+    <p class="section-intro">
+      Aprendé qué son, cómo reconocerlas y qué consecuencias pueden tener.
+    </p>
+
+    <div class="grid">
+
+      <article class="card">
+        <img
+          src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=700&q=80"
+          alt="Periódicos y noticias">
+        <div class="card-content">
+          <span class="tag">01 · DEFINICIÓN</span>
+          <h3>¿Qué son las fake news?</h3>
+          <p>
+            Son contenidos falsos o engañosos que se presentan como
+            información verdadera. Pueden aparecer en mensajes, videos,
+            publicaciones o páginas web.
+          </p>
+        </div>
+      </article>
+
+      <article class="card">
+        <img
+          src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=700&q=80"
+          alt="Uso de redes sociales">
+        <div class="card-content">
+          <span class="tag">02 · DIFUSIÓN</span>
+          <h3>Las redes sociales</h3>
+          <p>
+            Una publicación puede compartirse miles de veces.
+            Que tenga muchos comentarios o visitas no significa
+            que la información sea cierta.
+          </p>
+        </div>
+      </article>
+
+      <article class="card">
+        <img
+          src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=700&q=80"
+          alt="Persona escribiendo información">
+        <div class="card-content">
+          <span class="tag">03 · SEÑALES</span>
+          <h3>Títulos sospechosos</h3>
+          <p>
+            Algunos títulos exageran, buscan asustar o prometen
+            revelar secretos. Son señales para investigar, no una
+            prueba definitiva de falsedad.
+          </p>
+        </div>
+      </article>
+
+      <article class="card">
+        <img
+          src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=700&q=80"
+          alt="Tecnología y dispositivos">
+        <div class="card-content">
+          <span class="tag">04 · TECNOLOGÍA</span>
+          <h3>Imágenes manipuladas</h3>
+          <p>
+            Algunas imágenes se editan o se sacan de contexto.
+            También existen imágenes creadas con inteligencia artificial
+            que pueden parecer fotografías reales.
+          </p>
+        </div>
+      </article>
+
+      <article class="card">
+        <img
+          src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=700&q=80"
+          alt="Personas trabajando en equipo">
+        <div class="card-content">
+          <span class="tag">05 · CONSECUENCIAS</span>
+          <h3>¿A quiénes afectan?</h3>
+          <p>
+            Pueden generar miedo, perjudicar reputaciones, provocar
+            discusiones y dificultar que las personas tomen decisiones
+            informadas.
+          </p>
+        </div>
+      </article>
+
+      <article class="card">
+        <img
+          src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=700&q=80"
+          alt="Estudio y revisión de información">
+        <div class="card-content">
+          <span class="tag">06 · SOLUCIÓN</span>
+          <h3>Verificar antes de compartir</h3>
+          <p>
+            Revisá la fuente, la fecha y las pruebas. Compará la
+            información con otros medios confiables y consultá
+            documentos originales cuando sea posible.
+          </p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- DETECTOR -->
+  <section class="detector" id="detector">
+    <h2>🔎 Detector de noticias sospechosas</h2>
+    <p class="detector-desc">
+      Pegá una noticia y respondé algunas preguntas para encontrar
+      señales que necesiten verificación.
+    </p>
+
+    <label for="tituloNoticia">Título de la noticia (opcional)</label>
+    <input
+      type="text"
+      id="tituloNoticia"
+      maxlength="300"
+      placeholder="Ej.: ¡Descubren algo increíble!">
+
+    <label for="textoNoticia">Texto de la noticia</label>
+    <textarea
+      id="textoNoticia"
+      maxlength="10000"
+      placeholder="Pegá aquí la noticia que querés revisar..."
+    ></textarea>
+
+    <label for="fuente">¿Indica una fuente identificable?</label>
+    <select id="fuente" class="form-select">
+      <option value="no-se">No estoy seguro/a</option>
+      <option value="si">Sí, indica una fuente que puedo consultar</option>
+      <option value="no">No indica ninguna fuente</option>
+    </select>
+
+    <label for="otrasFuentes">¿Encontraste la misma información en otros medios confiables?</label>
+    <select id="otrasFuentes" class="form-select">
+      <option value="no-se">Todavía no lo comprobé</option>
+      <option value="si">Sí, la corroboré en otras fuentes independientes</option>
+      <option value="no">No encontré confirmación</option>
+    </select>
+
+    <label for="pruebas">¿Presenta pruebas comprobables?</label>
+    <select id="pruebas" class="form-select">
+      <option value="no-se">No estoy seguro/a</option>
+      <option value="si">Sí, incluye datos o documentos verificables</option>
+      <option value="no">No presenta pruebas claras</option>
+    </select>
+
+    <div class="form-buttons">
+      <button class="btn" id="analizarBtn" type="button">
+        🔍 Analizar noticia
+      </button>
+      <button class="btn btn-light" id="limpiarBtn" type="button">
+        Limpiar
+      </button>
+      <button class="btn btn-light" id="ejemploBtn" type="button">
+        Probar ejemplo
+      </button>
+    </div>
+
+    <div id="resultado" class="resultado" role="status" aria-live="polite"></div>
+
+    <p class="nota">
+      Importante: este detector utiliza reglas educativas y tus respuestas.
+      No busca la noticia en Internet ni comprueba automáticamente sus
+      afirmaciones. El resultado es orientativo y no demuestra que algo
+      sea verdadero o falso.
+    </p>
+  </section>
+
+  <!-- JUEGO -->
+  <section class="game-banner" id="juego">
+    <h2>🎮 ¡El desafío de las Fake News!</h2>
+    <p>
+      Leé cada caso, descubrí qué información es engañosa y ganá puntos.
+    </p>
+
+    <div class="game-question">
+      <div class="game-progress" id="progreso">PREGUNTA 1 DE 5</div>
+      <h3 id="pregunta">¿Cuál de estas situaciones es sospechosa?</h3>
+      <p id="pista">Leé atentamente las opciones.</p>
+
+      <div class="game-options" id="opciones"></div>
+
+      <div class="game-feedback" id="feedback" role="status" aria-live="polite"></div>
+
+      <div class="game-controls">
+        <button class="btn" id="siguienteBtn" type="button" hidden>
+          Siguiente pregunta →
+        </button>
+        <button class="btn btn-light" id="reiniciarJuegoBtn" type="button" hidden>
+          Volver a jugar
+        </button>
+      </div>
+
+      <p style="margin-top:15px;font-weight:bold">
+        ⭐ Puntaje: <span id="puntaje">0</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- CONSEJOS -->
+  <section class="section" id="consejos">
+    <h2 class="section-title">🛡️ Consejos para navegar seguros</h2>
+    <p class="section-intro">
+      Antes de compartir una noticia, seguí estos pasos.
+    </p>
+
+    <ul class="tips-list">
+      <li>🔍 <strong>Revisá al autor:</strong> comprobá quién publicó la información.</li>
+      <li>📅 <strong>Mir á la fecha:</strong> una noticia antigua puede circular como si fuera nueva.</li>
+      <li>🌐 <strong>Compará fuentes:</strong> buscá otros medios independientes y confiables.</li>
+      <li>📷 <strong>Verificá las imágenes:</strong> buscá su origen y contexto.</li>
+      <li>🧠 <strong>Pensá críticamente:</strong> no creas algo solamente porque coincide con tu opinión.</li>
+      <li>✋ <strong>No reenvíes por impulso:</strong> si no podés comprobarlo, no lo compartas como un hecho.</li>
+    </ul>
+
+    <div class="info-box">
+      <h3>💚 Nuestra propuesta</h3>
+      <p>
+        Promover una ciudadanía digital responsable: investigar,
+        verificar la información y compartir contenidos confiables.
+        Todos podemos ayudar a reducir la desinformación.
+      </p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <strong>Los Pato News 📰</strong>
+    <p>Edición especial: Las Fake News · 2026</p>
+    <p>Verificá. Pensá. Compartí responsablemente.</p>
+  </footer>
+
+</main>
+
+<style>
+/* Estilos de los campos de selección del detector */
+.form-select {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #a5d6a7;
+  border-radius: 10px;
+  background: white;
+  color: #23472a;
+  margin-top: 5px;
+}
+</style>
+
+<script>
+/* =====================================
+   DETECTOR EDUCATIVO
+===================================== */
+
+const tituloInput = document.getElementById("tituloNoticia");
+const textoInput = document.getElementById("textoNoticia");
+const resultado = document.getElementById("resultado");
+
+document.getElementById("analizarBtn").addEventListener("click", analizarNoticia);
+
+document.getElementById("limpiarBtn").addEventListener("click", () => {
+  tituloInput.value = "";
+  textoInput.value = "";
+  document.getElementById("fuente").value = "no-se";
+  document.getElementById("otrasFuentes").value = "no-se";
+  document.getElementById("pruebas").value = "no-se";
+  resultado.style.display = "none";
+  resultado.replaceChildren();
+  tituloInput.focus();
+});
+
+document.getElementById("ejemploBtn").addEventListener("click", () => {
+  tituloInput.value = "¡Último momento! Nadie quiere que conozcas este secreto";
+  textoInput.value =
+    "Compartí ahora esta información increíble. Según expertos, " +
+    "un descubrimiento cambiará todo, pero no se identifica quién " +
+    "realizó el estudio ni se muestran pruebas.";
+  document.getElementById("fuente").value = "no";
+  document.getElementById("otrasFuentes").value = "no-se";
+  document.getElementById("pruebas").value = "no";
+  analizarNoticia();
+});
+
+function analizarNoticia() {
+  const titulo = tituloInput.value.trim();
+  const texto = textoInput.value.trim();
+  const contenido = (titulo + " " + texto).toLowerCase();
+
+  if (contenido.length < 20) {
+    mostrarResultado(
+      "resultado-alerta",
+      "✍️ Necesitamos más información",
+      ["Pegá un título o texto más completo para poder revisarlo."],
+      "Buscá la noticia completa antes de analizarla."
+    );
+    return;
+  }
+
+  const alertas = [];
+  let puntos = 0;
+
+  const patrones = [
+    {
+      regex: /\b(último momento|impactante|increíble|escándalo|nadie quiere que sepas|verdad oculta|secreto prohibido)\b/i,
+      mensaje: "El texto usa expresiones sensacionalistas.",
+      puntos: 1
+    },
+    {
+      regex: /\b(compart[ií]|reenvi[aá]|difund[ií])\b.{0,60}\b(ahora|urgente|inmediatamente|todos)\b/i,
+      mensaje: "Parece presionar al lector para compartir rápidamente.",
+      puntos: 1
+    },
+    {
+      regex: /\b(cura todas las enfermedades|milagro garantizado|100 ?% garantizado)\b/i,
+      mensaje: "Hace una promesa absoluta que necesita pruebas sólidas.",
+      puntos: 2
+    },
+    {
+      regex: /\b(no quieren que sepas|te lo ocultan|verdad prohibida)\b/i,
+      mensaje: "Utiliza frases que pueden intentar manipular al lector.",
+      puntos: 1
+    },
+    {
+      regex: /\b(según expertos|estudios demuestran|científicos dicen)\b/i,
+      mensaje: "Menciona expertos o estudios sin identificarlos claramente.",
+      puntos: 1
+    }
+  ];
+
+  for (const patron of patrones) {
+    if (patron.regex.test(contenido)) {
+      alertas.push(patron.mensaje);
+      puntos += patron.puntos;
+    }
+  }
+
+  const fuente = document.getElementById("fuente").value;
+  const otras = document.getElementById("otrasFuentes").value;
+  const pruebas = document.getElementById("pruebas").value;
+
+  if (fuente === "no") {
+    alertas.push("No se identifica una fuente que permita comprobar la noticia.");
+    puntos += 2;
+  } else if (fuente === "no-se") {
+    alertas.push("Todavía falta comprobar quién publicó la información.");
+    puntos += 1;
+  }
+
+  if (otras === "no") {
+    alertas.push("No encontraste confirmación en otros medios confiables.");
+    puntos += 2;
+  } else if (otras === "no-se") {
+    alertas.push("Todavía falta contrastar la noticia con otras fuentes.");
+    puntos += 1;
+  }
+
+  if (pruebas === "no") {
+    alertas.push("No se identifican pruebas claras que respalden la afirmación.");
+    puntos += 2;
+  } else if (pruebas === "no-se") {
+    alertas.push("Falta comprobar si hay pruebas verificables.");
+    puntos += 1;
+  }
+
+  if (puntos >= 4) {
+    mostrarResultado(
+      "resultado-alerta",
+      "⚠️ Atención: necesita una verificación cuidadosa",
+      alertas,
+      "No la compartas como un hecho hasta comprobar las afirmaciones en fuentes confiables."
+    );
+  } else if (puntos > 0) {
+    mostrarResultado(
+      "resultado-info",
+      "🔎 Hay aspectos que todavía debés revisar",
+      alertas,
+      "Buscá más pruebas, comprobá la fuente y contrastá los datos."
+    );
+  } else {
+    mostrarResultado(
+      "resultado-ok",
+      "✅ No detectamos señales de alerta con estas reglas",
+      ["Tus respuestas indican que encontraste una fuente, otras confirmaciones y pruebas."],
+      "Esto no garantiza que la noticia sea verdadera. Verificá también los detalles y el contexto."
+    );
+  }
+}
+
+function mostrarResultado(clase, titulo, mensajes, consejo) {
+  resultado.replaceChildren();
+  resultado.className = "resultado " + clase;
+  resultado.style.display = "block";
+
+  const encabezado = document.createElement("h3");
+  encabezado.textContent = titulo;
+  resultado.appendChild(encabezado);
+
+  const lista = document.createElement("ul");
+
+  mensajes.forEach(mensaje => {
+    const item = document.createElement("li");
+    item.textContent = mensaje;
+    lista.appendChild(item);
+  });
+
+  resultado.appendChild(lista);
+
+  const parrafo = document.createElement("p");
+  const fuerte = document.createElement("strong");
+  fuerte.textContent = "Recomendación: ";
+  parrafo.append(fuerte, document.createTextNode(consejo));
+  resultado.appendChild(parrafo);
+}
+
+/* =====================================
+   JUEGO DE LAS FAKE NEWS
+===================================== */
+
+const preguntas = [
+  {
+    pregunta: "Una publicación afirma algo sorprendente, pero no muestra pruebas ni autor. ¿Qué conviene hacer?",
+    opciones: [
+      "Compartirla inmediatamente",
+      "Verificar la fuente y buscar pruebas",
+      "Creerla si tiene muchos comentarios"
+    ],
+    correcta: 1,
+    pista: "Pista: la popularidad no demuestra que una afirmación sea verdadera.",
+    explicacion: "¡Correcto! Hay que identificar la fuente y comprobar la información antes de compartirla."
+  },
+  {
+    pregunta: "Un mensaje dice: '¡Compartí ahora o desaparecerá esta información!'. ¿Qué señal aparece?",
+    opciones: [
+      "Presión para compartir rápidamente",
+      "Una prueba científica",
+      "Una fuente oficial identificada"
+    ],
+    correcta: 0,
+    pista: "Pista: fijate si el mensaje intenta apurarte.",
+    explicacion: "¡Bien! La urgencia puede ser una táctica para que compartas sin verificar."
+  },
+  {
+    pregunta: "Una foto circula como si fuera de hoy, pero fue publicada hace cinco años. ¿Qué problema hay?",
+    opciones: [
+      "La foto es necesariamente falsa",
+      "La foto no puede ser real",
+      "Puede estar fuera de contexto"
+    ],
+    correcta: 2,
+    pista: "Pista: una imagen auténtica también puede usarse de manera engañosa.",
+    explicacion: "¡Exacto! Hay que revisar cuándo y dónde se tomó la imagen."
+  },
+  {
+    pregunta: "Dos medios confiables publican información coincidente y enlazan documentos originales. ¿Qué conviene hacer?",
+    opciones: [
+      "Ignorar las pruebas",
+      "Revisar las fuentes y los documentos",
+      "Creer cualquier otra publicación sobre el tema"
+    ],
+    correcta: 1,
+    pista: "Pista: las pruebas originales ayudan a comprobar las afirmaciones.",
+    explicacion: "¡Muy bien! Contrastar fuentes independientes y consultar documentos originales ayuda a verificar."
+  },
+  {
+    pregunta: "Una noticia no tiene señales exageradas, pero tampoco presenta pruebas. ¿Es verdadera?",
+    opciones: [
+      "Sí, porque está bien escrita",
+      "Sí, porque no parece sospechosa",
+      "No se puede saber sin verificarla"
+    ],
+    correcta: 2,
+    pista: "Pista: una noticia falsa también puede parecer seria y estar bien escrita.",
+    explicacion: "¡Correcto! La ausencia de señales sospechosas no demuestra que una noticia sea verdadera."
+  }
+];
+
+let indicePregunta = 0;
+let puntaje = 0;
+let respondida = false;
+
+const preguntaElemento = document.getElementById("pregunta");
+const pistaElemento = document.getElementById("pista");
+const opcionesElemento = document.getElementById("opciones");
+const feedbackElemento = document.getElementById("feedback");
+const progresoElemento = document.getElementById("progreso");
+const puntajeElemento = document.getElementById("puntaje");
+const siguienteBtn = document.getElementById("siguienteBtn");
+const reiniciarBtn = document.getElementById("reiniciarJuegoBtn");
+
+function cargarPregunta() {
+  respondida = false;
+  const pregunta = preguntas[indicePregunta];
+
+  progresoElemento.textContent =
+    "PREGUNTA " + (indicePregunta + 1) + " DE " + preguntas.length;
+  preguntaElemento.textContent = pregunta.pregunta;
+  pistaElemento.textContent = pregunta.pista;
+  opcionesElemento.replaceChildren();
+  feedbackElemento.textContent = "";
+  feedbackElemento.className = "game-feedback";
+  siguienteBtn.hidden = true;
+  reiniciarBtn.hidden = true;
+
+  pregunta.opciones.forEach((opcion, i) => {
+    const boton = document.createElement("button");
+    boton.type = "button";
+    boton.className = "game-option";
+    boton.textContent = opcion;
+    boton.addEventListener("click", () => responder(i));
+    opcionesElemento.appendChild(boton);
+  });
+}
+
+function responder(eleccion) {
+  if (respondida) return;
+  respondida = true;
+
+  const pregunta = preguntas[indicePregunta];
+  const botones = opcionesElemento.querySelectorAll("button");
+
+  botones.forEach(boton => boton.disabled = true);
+
+  if (eleccion === pregunta.correcta) {
+    puntaje += 10;
+    feedbackElemento.textContent = "✅ " + pregunta.explicacion;
+    feedbackElemento.style.background = "#e8f5e9";
+    feedbackElemento.style.color = "#205629";
+  } else {
+    feedbackElemento.textContent =
+      "❌ No exactamente. " + pregunta.explicacion;
+    feedbackElemento.style.background = "#fff3cd";
+    feedbackElemento.style.color = "#674900";
+  }
+
+  feedbackElemento.className = "game-feedback visible";
+  puntajeElemento.textContent = puntaje;
+
+  siguienteBtn.hidden = false;
+
+  if (indicePregunta === preguntas.length - 1) {
+    siguienteBtn.textContent = "Ver resultado final";
+  } else {
+    siguienteBtn.textContent = "Siguiente pregunta →";
+  }
+}
+
+siguienteBtn.addEventListener("click", () => {
+  if (!respondida) return;
+
+  if (indicePregunta < preguntas.length - 1) {
+    indicePregunta++;
+    cargarPregunta();
+  } else {
+    mostrarFinal();
+  }
+});
+
+function mostrarFinal() {
+  progresoElemento.textContent = "¡DESAFÍO COMPLETADO!";
+  preguntaElemento.textContent = "Obtuviste " + puntaje + " de 50 puntos.";
+  pistaElemento.textContent =
+    puntaje === 50
+      ? "🏆 ¡Excelente! Sabés cómo verificar la información."
+      : puntaje >= 30
+        ? "👏 ¡Muy bien! Seguí practicando la verificación."
+        : "💪 ¡Buen intento! Repasá los consejos y volvé a jugar.";
+
+  opcionesElemento.replaceChildren();
+
+  feedbackElemento.textContent =
+    "Recordá: una noticia necesita pruebas. No alcanza con que parezca verdadera o falsa.";
+  feedbackElemento.className = "game-feedback visible";
+  feedbackElemento.style.background = "#e8f5e9";
+  feedbackElemento.style.color = "#205629";
+
+  siguienteBtn.hidden = true;
+  reiniciarBtn.hidden = false;
+}
+
+reiniciarBtn.addEventListener("click", () => {
+  indicePregunta = 0;
+  puntaje = 0;
+  puntajeElemento.textContent = "0";
+  cargarPregunta();
+});
+
+cargarPregunta();
+</script>
+
+</body>
+</html>
